@@ -1,0 +1,88 @@
+{% extends 'Dashboard/home.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper">
+    <div class="nk-content">
+        <div class="container-fluid">
+            <div class="nk-content-inner">
+                <div class="nk-content-body">
+                    <div class="nk-block-head nk-block-head-sm">
+                        <div class="nk-block-between">
+                            <div class="nk-block-head-content">
+                                <h3 class="nk-block-title page-title">Etudiants</h3>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-block">
+                        <div class="card card-bordered">
+                            <div class="card-inner">
+                                <div class="row gy-5">
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.First_name.id_for_label }}">Prénom :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="text" name="First_name" class="form-control" placeholder="Prénom">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.Last_name.id_for_label }}">Nom :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="text" name="Last_name" class="form-control" placeholder="Nom">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.addressMail.id_for_label }}">Adresse e-mail :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="email" name="addressMail" class="form-control" placeholder="Adresse e-mail">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.Matricule.id_for_label }}">Matricule :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="number" name="Matricule" class="form-control" placeholder="Matricule">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <div class="text-end">
+                                                    <button type="submit" class="btn "> + Ajouter une ligne</button>
+                                                     </div>
+                                                     <div class="text-end"><button type="reset" class="btn btn-info"><a href="#" class="text-white">Enregistrer</a></button>
+                                                     </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div>
+                                    <table class="table border table-striped table-bordered text-nowrap">
+                                        
+                                        <tbody>
+                                            {% for student in students %}
+                                            <tr>
+                                                <td>{{ student.First_name }}</td>
+                                                <td>{{ student.Last_name }}</td>
+                                                <td>{{ student.addressMail }}</td>
+                                                <td>{{ student.Matricule }}</td>
+                                                
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
